@@ -4,11 +4,50 @@ class View {
     this.$el = $el
 
     this.setupBoard();
+    this.bindEvents();
   }
 
-  bindEvents() {}
+  bindEvents() {
+    //el.on(click, e => {
+    // conts $somehing = $(e.currentTarget);
+    // alert($something.attr("datapos")) }
+    this.$el.on('click', 'li',(e => {
+      const $square = $(e.currentTarget);
+      this.makeMove($square);
 
-  makeMove($square) {}
+    }));
+  }
+
+  makeMove($square) {
+    const position = $square.data("pos");
+    const currentPlayer = this.game.currentPlayer;
+
+    try {
+      this.game.playMove(pos);
+    } catch (e) {
+      alert("Invalid Move! Try again.");
+      return;
+    }
+
+    $square.addClass(currentPlayer);
+
+    if (this.game.isOver()) {
+      this.$el.off("click");
+      this.$el.addClass("game-over");
+
+      const winner = this.game.winner();
+      const figcaption = $("<figcaption>");
+
+      if (winner) {
+        this.$el.addClass('winner-${winner}');
+        $figcaption.html('You win, ${winner}');
+      } else {
+        $figcaption.html("it's a draw!");
+      }
+
+      this.$el.append($figcaption);
+    }
+  }
 
   setupBoard() {
     const $ul = $('<ul>');
