@@ -119,7 +119,7 @@ class View {
   }
 
   makeMove($square) {
-    const position = $square.data("pos");
+    const pos = $square.data("pos");
     const currentPlayer = this.game.currentPlayer;
 
     try {
