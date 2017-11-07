@@ -21,7 +21,7 @@ class Game {
 
     this.board.print();
     console.log(`Current Turn: ${this.currentPlayer}`);
-
+ 
     reader.question('Enter rowIdx: ', rowIdxStr => {
       const rowIdx = parseInt(rowIdxStr);
       reader.question('Enter colIdx: ', colIdxStr => {

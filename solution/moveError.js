@@ -6,3 +6,4 @@ const MoveError = function (msg) { this.msg = msg; };
 // let it be a vanilla Object for now!
 
 module.exports = MoveError;
+ 
